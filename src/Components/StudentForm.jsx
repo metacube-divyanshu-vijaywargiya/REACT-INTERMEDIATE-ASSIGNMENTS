@@ -11,6 +11,7 @@ const StudentForm = () => {
     gender: '',
   });
 
+//   const [showDialog]
   const handleChange = (e) => {
     const { name, value } = e.target;
     setStudent({
@@ -20,9 +21,9 @@ const StudentForm = () => {
   };
 
   const handleSubmit = (e) => {
+    //here we will render the dialog on submit 
     e.preventDefault();
-    console.log('Student Information:', student);
-    // You can add further processing here, like sending data to an API
+    console.log(student);
   };
 
   return (
@@ -35,7 +36,6 @@ const StudentForm = () => {
           type="text"
           id="name"
           name="name"
-          value={student.name}
           onChange={handleChange}
           required
         />
@@ -47,7 +47,6 @@ const StudentForm = () => {
           type="number"
           id="age"
           name="age"
-          value={student.age}
           onChange={handleChange}
           required
         />
@@ -59,7 +58,6 @@ const StudentForm = () => {
           type="email"
           id="email"
           name="email"
-          value={student.email}
           onChange={handleChange}
           required
         />
@@ -70,7 +68,6 @@ const StudentForm = () => {
         <select
           id="major"
           name="major"
-          value={student.major}
           onChange={handleChange}
           required
         >
@@ -88,7 +85,6 @@ const StudentForm = () => {
         <textarea
           id="bio"
           name="bio"
-          value={student.bio}
           onChange={handleChange}
           rows="4"
           required
@@ -103,7 +99,6 @@ const StudentForm = () => {
               type="radio"
               name="gender"
               value="male"
-              checked={student.gender === 'male'}
               onChange={handleChange}
             />
             Male
@@ -113,7 +108,6 @@ const StudentForm = () => {
               type="radio"
               name="gender"
               value="female"
-              checked={student.gender === 'female'}
               onChange={handleChange}
             />
             Female
@@ -123,7 +117,6 @@ const StudentForm = () => {
               type="radio"
               name="gender"
               value="other"
-              checked={student.gender === 'other'}
               onChange={handleChange}
             />
             Other
