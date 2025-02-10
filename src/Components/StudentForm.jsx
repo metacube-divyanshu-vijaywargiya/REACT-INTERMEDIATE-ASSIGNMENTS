@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import './StudentForm.css'
 import Dialog from './Dialog';
+import useTheme from '../Contexts/ThemeContext';
 
 const StudentForm = () => {
+  const {themeMode} = useTheme();
   const [student, setStudent] = useState({
     name: '',
     age: '',
@@ -34,11 +36,11 @@ const StudentForm = () => {
 
   return (
     <>
-    <form onSubmit={handleSubmit} className='form_main'>
-      <h2 className='form_heading'>Student Information Form</h2>
+    <form onSubmit={handleSubmit} className={themeMode === 'light' ? 'form_main' : 'form_main_dark' }>
+      <h2 className={themeMode === 'light' ? 'form_heading':'form_heading_dark'}>Student Information Form</h2>
 
       <div className='label_fields_div'>
-        <label>Name:</label>
+        <label className={themeMode === 'light' ? 'label_text_light':'label_text_dark'}>Name:</label>
         <input
           className='input_field'
           type="text"
@@ -50,7 +52,7 @@ const StudentForm = () => {
       </div>
 
       <div className='label_fields_div'>
-        <label>Age:</label>
+        <label className={themeMode === 'light' ? 'label_text_light':'label_text_dark'}>Age:</label>
         <input
           className='input_field'
           type="number"
@@ -62,7 +64,7 @@ const StudentForm = () => {
       </div>
 
       <div className='label_fields_div'>
-        <label>Email:</label>
+        <label className={themeMode === 'light' ? 'label_text_light':'label_text_dark'}>Email:</label>
         <input
           className='input_field'
           type="email"
@@ -74,7 +76,7 @@ const StudentForm = () => {
       </div>
 
       <div className='label_fields_div'>
-        <label>Major:</label>
+        <label className={themeMode === 'light' ? 'label_text_light':'label_text_dark'}>Major:</label>
         <select
           className='input_field_select'
           id="major"
@@ -92,7 +94,7 @@ const StudentForm = () => {
       </div>
 
       <div className='label_fields_div'>
-        <label>Bio:</label>
+        <label className={themeMode === 'light' ? 'label_text_light':'label_text_dark'}>Bio:</label>
         <textarea
           className='input_field_textarea'
           id="bio"
@@ -104,9 +106,9 @@ const StudentForm = () => {
       </div>
 
       <div className='label_fields_div'>
-        <label>Gender:</label>
+        <label className={themeMode === 'light' ? 'label_text_light':'label_text_dark'}>Gender:</label>
         <div className='gender_inner_div'>
-          <label>
+          <label className={themeMode === 'light' ? 'label_text_light':'label_text_dark'}>
             <input
               type="radio"
               name="gender"
@@ -115,7 +117,7 @@ const StudentForm = () => {
             />
             Male
           </label>
-          <label>
+          <label className={themeMode === 'light' ? 'label_text_light':'label_text_dark'}>
             <input
               type="radio"
               name="gender"
@@ -124,7 +126,7 @@ const StudentForm = () => {
             />
             Female
           </label>
-          <label>
+          <label className={themeMode === 'light' ? 'label_text_light':'label_text_dark'}>
             <input
               type="radio"
               name="gender"
@@ -136,12 +138,12 @@ const StudentForm = () => {
         </div>
       </div>
 
-      <button type="submit">Submit</button>
+      <button type="submit" className='submit_button'>Submit</button>
     </form>
 
 {/* This dialog i made to show the submitted information */}
     <Dialog 
-        isOpen={showDialog} 
+        isVisible={showDialog} 
         onClose={handleCloseDialog} 
         studentData={student} 
     />

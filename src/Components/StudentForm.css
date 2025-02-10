@@ -1,6 +1,10 @@
 .form_heading{
     text-align: center;
 }
+.form_heading_dark{
+    text-align: center;
+    color: white;
+}
 
 .label_fields_div{
     width: 300px;
@@ -10,6 +14,17 @@
 }
 
 .form_main{
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.form_main_dark{
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #2B2B2B;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,4 +63,21 @@
     display: flex;
     justify-content: space-between;
 
+}
+
+.submit_button{
+    padding: 10px 20px;
+    background-color: rgb(70, 70, 243);
+    border-radius: 3px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.label_text_light{
+    color: black;
+}
+
+.label_text_dark{
+    color: white;
 }
