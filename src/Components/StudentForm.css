@@ -1,0 +1,51 @@
+.form_heading{
+    text-align: center;
+}
+
+.label_fields_div{
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form_main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.input_field{
+    width: 180px;
+    outline: none;
+    background-color: rgba(160, 160, 160, 0.331);
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+}
+.input_field_textarea{
+    resize: none;
+    width: 180px;
+    outline: none;
+    background-color: rgba(160, 160, 160, 0.331);
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.input_field_select{
+    width: 196px;
+    outline: none;
+    background-color: rgba(160, 160, 160, 0.331);
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.gender_inner_div{
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+
+}

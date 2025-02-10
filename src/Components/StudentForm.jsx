@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './StudentForm.css'
+import Dialog from './Dialog';
 
 const StudentForm = () => {
   const [student, setStudent] = useState({
@@ -11,7 +12,8 @@ const StudentForm = () => {
     gender: '',
   });
 
-//   const [showDialog]
+  const [showDialog, setShowDialog] = useState(false);
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setStudent({
@@ -21,18 +23,24 @@ const StudentForm = () => {
   };
 
   const handleSubmit = (e) => {
-    //here we will render the dialog on submit 
     e.preventDefault();
+    setShowDialog(true); 
     console.log(student);
   };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <h2>Student Information Form</h2>
+  const handleCloseDialog = () => {
+    setShowDialog(false); //closing the dialog 
+  };
 
-      <div>
-        <label htmlFor="name">Name:</label>
+  return (
+    <>
+    <form onSubmit={handleSubmit} className='form_main'>
+      <h2 className='form_heading'>Student Information Form</h2>
+
+      <div className='label_fields_div'>
+        <label>Name:</label>
         <input
+          className='input_field'
           type="text"
           id="name"
           name="name"
@@ -41,9 +49,10 @@ const StudentForm = () => {
         />
       </div>
 
-      <div>
-        <label htmlFor="age">Age:</label>
+      <div className='label_fields_div'>
+        <label>Age:</label>
         <input
+          className='input_field'
           type="number"
           id="age"
           name="age"
@@ -52,9 +61,10 @@ const StudentForm = () => {
         />
       </div>
 
-      <div>
-        <label htmlFor="email">Email:</label>
+      <div className='label_fields_div'>
+        <label>Email:</label>
         <input
+          className='input_field'
           type="email"
           id="email"
           name="email"
@@ -63,15 +73,16 @@ const StudentForm = () => {
         />
       </div>
 
-      <div>
-        <label htmlFor="major">Major:</label>
+      <div className='label_fields_div'>
+        <label>Major:</label>
         <select
+          className='input_field_select'
           id="major"
           name="major"
           onChange={handleChange}
           required
         >
-          <option value="">Select your major</option>
+          <option value="" disabled selected>Select your major</option>
           <option value="Computer Science">Computer Science</option>
           <option value="Mathematics">Mathematics</option>
           <option value="Physics">Physics</option>
@@ -80,9 +91,10 @@ const StudentForm = () => {
         </select>
       </div>
 
-      <div>
-        <label htmlFor="bio">Bio:</label>
+      <div className='label_fields_div'>
+        <label>Bio:</label>
         <textarea
+          className='input_field_textarea'
           id="bio"
           name="bio"
           onChange={handleChange}
@@ -91,7 +103,7 @@ const StudentForm = () => {
         />
       </div>
 
-      <div>
+      <div className='label_fields_div'>
         <label>Gender:</label>
         <div className='gender_inner_div'>
           <label>
@@ -126,6 +138,17 @@ const StudentForm = () => {
 
       <button type="submit">Submit</button>
     </form>
+
+{/* This dialog i made to show the submitted information */}
+    <Dialog 
+        isOpen={showDialog} 
+        onClose={handleCloseDialog} 
+        studentData={student} 
+    />
+    </>
+
+
+
   );
 };
 
