@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './StudentForm.css'
 import Dialog from './Dialog';
 import useTheme from '../Contexts/ThemeContext';
@@ -15,6 +15,14 @@ const StudentForm = () => {
   });
 
   const [showDialog, setShowDialog] = useState(false);
+
+  //Creating ref for each input field
+  const nameRef = useRef();
+  const ageRef = useRef();
+  const emailRef = useRef();
+  const majorRef = useRef();
+  const bioRef = useRef();
+  const genderRef = useRef();
   
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,8 +34,46 @@ const StudentForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setShowDialog(true); 
-    console.log(student);
+    // for name input field 
+    if(!student.name){
+      nameRef.current.style.border = '1.5px solid red';
+    }else{
+      nameRef.current.style.border = ''
+    }
+
+    //for age input field 
+    if(!student.age){
+      ageRef.current.style.border = '1.5px solid red';
+    }else{
+      ageRef.current.style.border = ''
+    }
+
+    //for email input field 
+    const emailRegex = /[a-zA-Z0-9_\-\.]+[@][a-z]+[\.][a-z]{2,3}/;
+    if(!student|| !emailRegex.test(student.email)){
+      emailRef.current.style.border = '1.5px solid red';
+    }else{
+      emailRef.current.style.border = ''
+    }
+
+    //for major input field 
+    if(!student.major){
+      majorRef.current.style.border = '1.5px solid red';
+    }else{
+      majorRef.current.style.border = ''
+    }
+
+    //for bio input field 
+    if(!student.bio){
+      bioRef.current.style.border = '1.5px solid red';
+    }else{
+      bioRef.current.style.border = ''
+    }
+
+    //if everything is entered by the user then show the dialog with submitted information
+    if(student.name && student.age && student.bio && student.email && student.gender && student.major){
+      setShowDialog(true); 
+    }
   };
 
   const handleCloseDialog = () => {
@@ -36,7 +82,7 @@ const StudentForm = () => {
 
   return (
     <>
-    <form onSubmit={handleSubmit} className={themeMode === 'light' ? 'form_main' : 'form_main_dark' }>
+    <form className={themeMode === 'light' ? 'form_main' : 'form_main_dark' }>
       <h2 className={themeMode === 'light' ? 'form_heading':'form_heading_dark'}>Student Information Form</h2>
 
       <div className='label_fields_div'>
@@ -44,10 +90,10 @@ const StudentForm = () => {
         <input
           className='input_field'
           type="text"
+          ref={nameRef}
           id="name"
           name="name"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -57,9 +103,9 @@ const StudentForm = () => {
           className='input_field'
           type="number"
           id="age"
+          ref={ageRef}
           name="age"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -67,11 +113,11 @@ const StudentForm = () => {
         <label className={themeMode === 'light' ? 'label_text_light':'label_text_dark'}>Email:</label>
         <input
           className='input_field'
-          type="email"
+          type="text"
+          ref={emailRef}
           id="email"
           name="email"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -81,8 +127,8 @@ const StudentForm = () => {
           className='input_field_select'
           id="major"
           name="major"
+          ref={majorRef}
           onChange={handleChange}
-          required
         >
           <option value="" disabled selected>Select your major</option>
           <option value="Computer Science">Computer Science</option>
@@ -99,9 +145,9 @@ const StudentForm = () => {
           className='input_field_textarea'
           id="bio"
           name="bio"
+          ref={bioRef}
           onChange={handleChange}
           rows="4"
-          required
         />
       </div>
 
@@ -112,6 +158,7 @@ const StudentForm = () => {
             <input
               type="radio"
               name="gender"
+              ref={genderRef}
               value="male"
               onChange={handleChange}
             />
@@ -123,6 +170,7 @@ const StudentForm = () => {
               name="gender"
               value="female"
               onChange={handleChange}
+              ref={genderRef}
             />
             Female
           </label>
@@ -132,21 +180,21 @@ const StudentForm = () => {
               name="gender"
               value="other"
               onChange={handleChange}
+              ref={genderRef}
             />
             Other
           </label>
         </div>
       </div>
 
-      <button type="submit" className='submit_button'>Submit</button>
+      <button onClick={handleSubmit} className='submit_button'>Submit</button>
     </form>
 
 {/* This dialog i made to show the submitted information */}
-    <Dialog 
-        isVisible={showDialog} 
+    { showDialog && <Dialog 
         onClose={handleCloseDialog} 
         studentData={student} 
-    />
+    />}
     </>
 
 

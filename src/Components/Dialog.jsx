@@ -1,9 +1,7 @@
 import React from 'react';
 import './Dialog.css'; 
 
-const Dialog = ({ isVisible, onClose, studentData }) => {
-  if (!isVisible) return null; 
-
+const Dialog = ({ onClose, studentData }) => {
   return (
     <div className="dialog-overlay">
       <div className="dialog">
