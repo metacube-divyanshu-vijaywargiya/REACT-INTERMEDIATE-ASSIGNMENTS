@@ -1,6 +1,9 @@
-import { useEffect, useState } from 'react'
+import { Suspense, useState }  from 'react'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import './App.css'
-import StudentForm from './Components/StudentForm.jsx'
+//lazy loading form
+const StudentForm = React.lazy(()=> import('./Components/StudentForm.jsx'))
 import { ThemeProvider } from './Contexts/ThemeContext.js'
 import ThemeButton from './Components/ThemeButton.jsx'
 
@@ -15,13 +18,17 @@ function App() {
     setThemeMode('light');
   }
 
-  return(
+  return ReactDOM.createPortal(
   <>
   <ThemeProvider value={{themeMode, darkTheme, lightTheme}}>
     <ThemeButton classList='themebutton'/>
-    <StudentForm />
+    {/* Wrapping the lazy loaded component in suspense , so that we can show fallback text while loading of that component */}
+    <Suspense fallback={<div>Loading....</div>}>
+      <StudentForm />
+    </Suspense>
   </ThemeProvider>
-  </>
+  </>, 
+  document.getElementById('portal-root')
   )
 }
 
