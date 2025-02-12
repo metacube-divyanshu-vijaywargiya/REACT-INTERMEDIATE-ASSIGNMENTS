@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './StudentForm.css'
 import Dialog from './Dialog';
 import useTheme from '../Contexts/ThemeContext';
@@ -15,6 +15,11 @@ const StudentForm = () => {
   });
 
   const [showDialog, setShowDialog] = useState(false);
+
+  //to focus initially on name input field when page just reloads
+  useEffect(()=>{
+    nameRef.current.focus();
+  },[])
 
   //Creating ref for each input field
   const nameRef = useRef();
@@ -72,6 +77,9 @@ const StudentForm = () => {
 
     //if everything is entered by the user then show the dialog with submitted information
     if(student.name && student.age && student.bio && student.email && student.gender && student.major){
+      const storedStudents = JSON.parse(localStorage.getItem('students')) || [];
+      storedStudents.push(student);
+      localStorage.setItem('students', JSON.stringify(storedStudents));      
       setShowDialog(true); 
     }
   };

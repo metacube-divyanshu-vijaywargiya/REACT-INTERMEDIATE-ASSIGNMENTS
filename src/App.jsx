@@ -6,6 +6,7 @@ import './App.css'
 const StudentForm = React.lazy(()=> import('./Components/StudentForm.jsx'))
 import { ThemeProvider } from './Contexts/ThemeContext.js'
 import ThemeButton from './Components/ThemeButton.jsx'
+import StudentsTable from './Components/StudentsTable.jsx'
 
 function App() {
   const [themeMode , setThemeMode] = useState('light')
@@ -25,6 +26,7 @@ function App() {
     {/* Wrapping the lazy loaded component in suspense , so that we can show fallback text while loading of that component */}
     <Suspense fallback={<div>Loading....</div>}>
       <StudentForm />
+      <StudentsTable/>
     </Suspense>
   </ThemeProvider>
   </>, 

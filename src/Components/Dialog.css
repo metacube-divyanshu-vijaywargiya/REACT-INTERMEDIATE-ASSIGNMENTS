@@ -27,6 +27,7 @@
   }
   
   .close_icon {
+    margin-top: 0;
     color: rgb(255, 0, 0);
     border: none;
     border-radius: 4px;
@@ -37,10 +38,19 @@
   .close_icon:hover {
     color: rgb(134, 0, 0);
   }
+
+  .dialog_row{
+    display: flex;
+    gap: 30px;
+  }
   
 
   .dialog_header{
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .dialog_info_heading{
+    color: rgb(56, 56, 243);
   }
