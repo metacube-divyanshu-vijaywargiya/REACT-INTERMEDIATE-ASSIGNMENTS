@@ -19,3 +19,14 @@
     color: white;
 }
   
+.text_color_dark{
+    color: black;
+}
+
+.text_color_light{
+    color: white;
+}
+
+.no_students{
+    margin: 10px;
+}

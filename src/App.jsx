@@ -7,10 +7,13 @@ const StudentForm = React.lazy(()=> import('./Components/StudentForm.jsx'))
 import { ThemeProvider } from './Contexts/ThemeContext.js'
 import ThemeButton from './Components/ThemeButton.jsx'
 import StudentsTable from './Components/StudentsTable.jsx'
+import useFetchStudents from './CustomHooks/useFetchStudents.jsx'
 
 function App() {
   const [themeMode , setThemeMode] = useState('light')
-
+  const {data} = useFetchStudents();
+  console.log(data);
+  
   const darkTheme = ()=>{
     setThemeMode('dark');
   }
@@ -23,11 +26,13 @@ function App() {
   <>
   <ThemeProvider value={{themeMode, darkTheme, lightTheme}}>
     <ThemeButton classList='themebutton'/>
+    <div className={themeMode === 'dark' ? 'bg-main-dark' : 'bg-main-light'}>
     {/* Wrapping the lazy loaded component in suspense , so that we can show fallback text while loading of that component */}
     <Suspense fallback={<div>Loading....</div>}>
       <StudentForm />
       <StudentsTable/>
     </Suspense>
+    </div>
   </ThemeProvider>
   </>, 
   document.getElementById('portal-root')

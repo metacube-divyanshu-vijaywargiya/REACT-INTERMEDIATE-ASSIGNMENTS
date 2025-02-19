@@ -1,8 +1,10 @@
 import React from 'react';
 import './Dialog.css'; 
+import ReactDOM from 'react-dom'
+
 
 const Dialog = ({ onClose, studentData }) => {
-  return (
+  return ReactDOM.createPortal(
     <div className="dialog-overlay">
       <div className="dialog">
         <div className='dialog_header'>
@@ -20,7 +22,8 @@ const Dialog = ({ onClose, studentData }) => {
         <div><strong className='dialog_info_heading'>Bio:</strong> {studentData.bio}</div>
         <div><strong className='dialog_info_heading'>Gender:</strong> {studentData.gender}</div>
       </div>
-    </div>
+    </div>,
+    document.getElementById('root')
   );
 };
 

@@ -2,9 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import './StudentForm.css'
 import Dialog from './Dialog';
 import useTheme from '../Contexts/ThemeContext';
+import { useDispatch } from 'react-redux';
+import PortalCounter from './PortalCounter';
+import { addStudent } from '../redux/Features/studentSlice';
 
 const StudentForm = () => {
   const {themeMode} = useTheme();
+  const [count, setCount] = useState(0)
   const [student, setStudent] = useState({
     name: '',
     age: '',
@@ -13,11 +17,14 @@ const StudentForm = () => {
     bio: '',
     gender: '',
   });
-
   const [showDialog, setShowDialog] = useState(false);
+  const dispatch = useDispatch();
+
+
+
 
   //to focus initially on name input field when page just reloads
-  useEffect(()=>{
+  useEffect(()=>{    
     nameRef.current.focus();
   },[])
 
@@ -77,9 +84,12 @@ const StudentForm = () => {
 
     //if everything is entered by the user then show the dialog with submitted information
     if(student.name && student.age && student.bio && student.email && student.gender && student.major){
-      const storedStudents = JSON.parse(localStorage.getItem('students')) || [];
-      storedStudents.push(student);
-      localStorage.setItem('students', JSON.stringify(storedStudents));      
+      // const storedStudents = JSON.parse(localStorage.getItem('students')) || [];
+      // storedStudents.push(student);
+      // localStorage.setItem('students', JSON.stringify(storedStudents));     
+      console.log(student);
+      
+      dispatch(addStudent({name : student.name, age :student.age, bio: student.bio, email:student.email, gender : student.gender, major : student.major})) 
       setShowDialog(true); 
     }
   };
@@ -90,6 +100,11 @@ const StudentForm = () => {
 
   return (
     <>
+    <div>
+    <button onClick={()=>setCount(count+1)}>Increment</button>
+    <PortalCounter count={count}/>
+    <button onClick={()=>setCount(count-1)}>Decrement</button>
+    </div>
     <form className={themeMode === 'light' ? 'form_main' : 'form_main_dark' }>
       <h2 className={themeMode === 'light' ? 'form_heading':'form_heading_dark'}>Student Information Form</h2>
 

@@ -14,7 +14,7 @@ function ThemeButton(){
     return(
         <>
             <label>
-                <input type="checkbox" value="" onChange={handleChange} checked={themeMode === "dark" }></input>
+                <input type="checkbox" onChange={handleChange} checked={themeMode === "dark" }></input>
                 <span>{themeMode.toUpperCase()}</span>
             </label>
         </>

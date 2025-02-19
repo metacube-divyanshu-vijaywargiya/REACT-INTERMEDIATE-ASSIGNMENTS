@@ -1,3 +1,106 @@
 *{
     text-align: center;
+    margin: 0;
+}
+
+#portal-counter-root{
+    position: absolute;
+    top: 15px;
+}
+
+.form_heading{
+    text-align: center;
+}
+.form_heading_dark{
+    text-align: center;
+    color: white;
+}
+
+.label_fields_div{
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form_main{
+    padding: 20px;
+    margin-top: 10px;
+    /* border-radius: 20px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.form_main_dark{
+    margin-top: 10px;
+    padding: 20px;
+    /* border-radius: 20px; */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.input_field{
+    width: 180px;
+    outline: none;
+    background-color: rgba(160, 160, 160, 0.331);
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+}
+.input_field_textarea{
+    resize: none;
+    width: 180px;
+    outline: none;
+    background-color: rgba(160, 160, 160, 0.331);
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.input_field_select{
+    width: 196px;
+    outline: none;
+    background-color: rgba(160, 160, 160, 0.331);
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.gender_inner_div{
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.submit_button{
+    padding: 10px 20px;
+    background-color: rgb(70, 70, 243);
+    border-radius: 3px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.label_text_light{
+    color: black;
+}
+
+.label_text_dark{
+    color: white;
+}
+
+.bg-main-dark{
+    background-color: #2B2B2B;
+    height:100%;
+    padding: 20px;
+}
+.bg-main-light{
+    background-color: white;
+    height:100%;
+    padding: 20px;
 }
