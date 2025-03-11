@@ -8,6 +8,8 @@ import { ThemeProvider } from './Contexts/ThemeContext.js'
 import ThemeButton from './Components/ThemeButton.jsx'
 import StudentsTable from './Components/StudentsTable.jsx'
 import useFetchStudents from './CustomHooks/useFetchStudents.jsx'
+import ErrorBoundary from './Components/ErrorBoundary.jsx'
+import PostTable from './Components/PostTable.jsx'
 
 function App() {
   const [themeMode , setThemeMode] = useState('light')
@@ -29,8 +31,11 @@ function App() {
     <div className={themeMode === 'dark' ? 'bg-main-dark' : 'bg-main-light'}>
     {/* Wrapping the lazy loaded component in suspense , so that we can show fallback text while loading of that component */}
     <Suspense fallback={<div>Loading....</div>}>
+    <ErrorBoundary fallback={<div>Error occured while loading form</div>}>
       <StudentForm />
+    </ErrorBoundary>
       <StudentsTable/>
+      <PostTable/>
     </Suspense>
     </div>
   </ThemeProvider>

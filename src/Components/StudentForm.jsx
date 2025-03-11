@@ -20,7 +20,7 @@ const StudentForm = () => {
   const [showDialog, setShowDialog] = useState(false);
   const dispatch = useDispatch();
 
-
+  throw new Error("testing error"); // throwing error manually to test error boundaries
 
 
   //to focus initially on name input field when page just reloads

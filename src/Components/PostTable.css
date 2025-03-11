@@ -1,0 +1,18 @@
+.update_input_title{
+    width: 400px;
+    padding: 5px;
+    border: 2px solid rgb(86, 86, 211);
+}
+
+.button{
+    padding: 6px;
+    background-color: rgb(86, 86, 211);
+    color: white;
+    border: none;
+    outline: none;
+    margin-left: 5px;
+}
+
+.update_post_form{
+    margin-bottom: 10px;
+}
