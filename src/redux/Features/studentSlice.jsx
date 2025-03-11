@@ -32,9 +32,6 @@ export const studentSlice = createSlice({
     }
 })
 
-export const getStudentsSelector = createSelector((state)=> state.students, state=> state)
-
-
 export const {addStudent, removeStudent} = studentSlice.actions
 
 export default studentSlice.reducer;
